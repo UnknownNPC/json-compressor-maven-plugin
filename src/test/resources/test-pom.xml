@@ -1,0 +1,28 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.unknownnpc</groupId>
+    <artifactId>project-to-test</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>Test JsonToStringMojo</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>json-to-string-maven-plugin</artifactId>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <includes>
+                        <include>target/test-classes/json-sample.json</include>
+                        <include>target/test-classes/json-sample*.json</include>
+                    </includes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

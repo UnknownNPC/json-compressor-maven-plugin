@@ -1,16 +1,44 @@
-<project>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.unknownnpc</groupId>
+    <groupId>com.github.unknownnpc.jsontostring</groupId>
     <artifactId>json-to-string-maven-plugin</artifactId>
-    <version>1.0.0</version>
-    <name>Json2String Maven Plugin</name>
-    <description>Plugin removes useless whitespaces and newlines in target json files.
-        It helps to reduce file sizes before they get packaged to jar.</description>
+    <version>1.0</version>
     <packaging>maven-plugin</packaging>
+
+    <name>Json2String Maven Plugin</name>
+    <description>Plugin removes useless whitespaces and newlines in target json files</description>
+    <url>https://github.com/UnknownNPC/json-to-string-maven-plugin</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/unknownnpc/json-to-string-maven-plugin</url>
+        <connection>scm:git:git://github.com/unknownnpc/json-to-string-maven-plugin.git</connection>
+    </scm>
+
+    <developers>
+        <developer>
+            <email>unknownnpc@gmail.com</email>
+            <name>Vitalii Zymukha</name>
+            <url>https://github.com/unknownnpc</url>
+            <id>unknownnpc</id>
+        </developer>
+    </developers>
 
     <properties>
         <maven.version>3.3.9</maven.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>

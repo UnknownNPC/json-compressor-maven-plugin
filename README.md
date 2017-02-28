@@ -15,9 +15,9 @@ mvn clean install
 #### Usage in pom.xml
 ```
 <plugin>
-	<groupId>com.github.unknownnpc</groupId>
+	<groupId>com.github.unknownnpc.jsontostring</groupId>
 	<artifactId>json-to-string-maven-plugin</artifactId>
-	<version>1.0.0</version>
+	<version>1.0</version>
 	<executions>
 		<execution>
 			<goals>
@@ -36,7 +36,7 @@ mvn clean install
 
 #### Run
 ```
-mvn com.github.unknownnpc:json-to-string-maven-plugin:minify
+mvn com.github.unknownnpc.jsontostring:json-to-string-maven-plugin:minify
 ```
 ## Example
 

@@ -55,7 +55,6 @@ public class FileIOUtilTest extends TestResourceReader {
         Map<String, String> fakeFilePathAndContent = new HashMap<String, String>() {{
             put("fake-write-path.txt", "");
         }};
-
         FileIOUtil.writeFilesContent(fakeFilePathAndContent, UTF8_ENCODING);
     }
 

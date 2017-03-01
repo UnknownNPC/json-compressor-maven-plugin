@@ -13,6 +13,7 @@ public class FileIOUtilTest extends TestResourceReader {
     private static final String UTF8_ENCODING = "UTF-8";
     private static final String READ_FILE_SAMPLE_TXT = "read-file-sample.txt";
     private static final String WRITE_FILE_SAMPLE_TXT = "write-file-sample.txt";
+    private static final String TXT_FILES_WILDCARD = "*.txt";
 
     @Test
     public void fileUtilShouldReadFileContent() throws IOException {
@@ -34,6 +35,14 @@ public class FileIOUtilTest extends TestResourceReader {
         Map<String, String> writeFilePathAndContentResult = FileIOUtil.readFilesContent(writeFileSamplePath, UTF8_ENCODING);
         String writeFileContent = writeFilePathAndContentResult.values().iterator().next();
         Assert.assertEquals(writeContent, writeFileContent);
+    }
+
+    @Test
+    public void fileUtilShouldReadFilesUsingWildcard() throws IOException {
+        String txtFilesWildcardPath = getTestFilePath(TXT_FILES_WILDCARD);
+        Map<String, String> txtFilesPathAndContent = FileIOUtil.readFilesContent(txtFilesWildcardPath, UTF8_ENCODING);
+        final int expectedNumberOfTxtFiles = 2;
+        Assert.assertEquals(expectedNumberOfTxtFiles, txtFilesPathAndContent.size());
     }
 
     @Test(expected = IOException.class)

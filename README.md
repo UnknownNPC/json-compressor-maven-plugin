@@ -20,7 +20,7 @@ mvn clean install
 <plugin>
 	<groupId>com.github.unknownnpc.jsontostring</groupId>
 	<artifactId>json-to-string-maven-plugin</artifactId>
-	<version>1.0.0</version>
+	<version>1.0</version>
 	<executions>
 		<execution>
 			<goals>

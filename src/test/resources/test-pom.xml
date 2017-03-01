@@ -17,6 +17,7 @@
                 <artifactId>json-to-string-maven-plugin</artifactId>
                 <configuration>
                     <encoding>UTF-8</encoding>
+                    <skip>false</skip>
                     <includes>
                         <include>target/test-classes/json-sample.json</include>
                         <include>target/test-classes/json-sample*.json</include>

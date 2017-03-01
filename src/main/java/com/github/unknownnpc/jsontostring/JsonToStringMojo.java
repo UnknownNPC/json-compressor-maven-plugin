@@ -25,9 +25,16 @@ public class JsonToStringMojo extends AbstractMojo {
     @Parameter(property = "encoding", defaultValue = "${project.build.sourceEncoding}", required = true)
     private String encoding;
 
+    @Parameter(property = "skip", defaultValue = "false")
+    private boolean skip;
+
     private static final JsonToStringExecutor JSON_TO_STRING_EXECUTOR = new JsonToStringExecutorImpl();
 
     public void execute() throws MojoExecutionException, MojoFailureException {
+        if (skip) {
+            getLog().info("Skipping");
+            return;
+        }
         try {
             for (String filePathExpression : includes) {
                 Map<String, String> absolutePathAndContentMap = FileIOUtil.readFilesContent(filePathExpression, encoding);

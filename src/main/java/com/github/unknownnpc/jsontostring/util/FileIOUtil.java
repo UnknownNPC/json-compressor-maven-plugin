@@ -73,13 +73,13 @@ public final class FileIOUtil {
         }
     }
 
-    private static boolean isFileExist(String relativePath) {
-        File f = new File(relativePath);
+    private static boolean isFileExist(String absolutePath) {
+        File f = new File(absolutePath);
         return f.exists() && !f.isDirectory();
     }
 
-    private static boolean isDirectoryExist(String relativePath) {
-        File f = new File(relativePath);
+    private static boolean isDirectoryExist(String absolutePath) {
+        File f = new File(absolutePath);
         return f.exists() && f.isDirectory();
     }
 

@@ -26,6 +26,7 @@ mvn clean install
 		</execution>
 	</executions>
 	<configuration>
+		<skip>false</skip>
 		<includes>
 			<include>${project.build.directory}/classes/large-file.json</include>
 			<include>${project.build.directory}/classes/large-files-*.json</include>

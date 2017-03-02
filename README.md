@@ -37,7 +37,7 @@ mvn clean install
 </plugin>
 ```
 
-Plugin is also supports `skip` configuration parameter, eg. `<skip>true</skip>`. 
+Plugin is also support `skip` configuration parameter, eg. `<configuration><skip>true</skip></configuration>`. 
 
 #### Run
 ```

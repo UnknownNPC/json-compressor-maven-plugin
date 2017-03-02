@@ -10,7 +10,7 @@
         <version>9</version>
     </parent>
 
-    <groupId>com.github.unknownnpc.jsontostring</groupId>
+    <groupId>com.github.unknownnpc.plugins</groupId>
     <artifactId>json-to-string-maven-plugin</artifactId>
     <version>1.1-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>

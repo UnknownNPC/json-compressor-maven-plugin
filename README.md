@@ -18,9 +18,9 @@ mvn clean install
 #### Usage in pom.xml
 ```
 <plugin>
-	<groupId>com.github.unknownnpc.jsontostring</groupId>
+	<groupId>com.github.unknownnpc.plugins</groupId>
 	<artifactId>json-to-string-maven-plugin</artifactId>
-	<version>1.0</version>
+	<version>1.1</version>
 	<executions>
 		<execution>
 			<goals>
@@ -29,7 +29,6 @@ mvn clean install
 		</execution>
 	</executions>
 	<configuration>
-		<skip>false</skip>
 		<includes>
 			<include>${project.build.directory}/classes/large-file.json</include>
 			<include>${project.build.directory}/classes/large-files-*.json</include>
@@ -38,9 +37,11 @@ mvn clean install
 </plugin>
 ```
 
+Plugin is also supports `skip` configuration parameter, eg. `<skip>true</skip>`. 
+
 #### Run
 ```
-mvn com.github.unknownnpc.jsontostring:json-to-string-maven-plugin:minify
+mvn com.github.unknownnpc.plugins:json-to-string-maven-plugin:minify
 ```
 ## Example
 

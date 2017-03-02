@@ -1,6 +1,6 @@
-package com.github.unknownnpc.jsontostring.util;
+package com.github.unknownnpc.plugins.util;
 
-import com.github.unknownnpc.jsontostring.TestResourceReader;
+import com.github.unknownnpc.plugins.TestResourceReader;
 import org.junit.Assert;
 import org.junit.Test;
 

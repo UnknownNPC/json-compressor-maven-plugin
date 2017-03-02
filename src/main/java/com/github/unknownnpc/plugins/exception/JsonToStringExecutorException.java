@@ -1,4 +1,4 @@
-package com.github.unknownnpc.jsontostring.exception;
+package com.github.unknownnpc.plugins.exception;
 
 /**
  * Created by unknownnpc on 2/27/17.

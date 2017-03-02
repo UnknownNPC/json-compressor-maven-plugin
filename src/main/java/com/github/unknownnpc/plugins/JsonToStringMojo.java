@@ -1,9 +1,9 @@
-package com.github.unknownnpc.jsontostring;
+package com.github.unknownnpc.plugins;
 
-import com.github.unknownnpc.jsontostring.exception.JsonToStringExecutorException;
-import com.github.unknownnpc.jsontostring.executor.JsonToStringExecutor;
-import com.github.unknownnpc.jsontostring.executor.JsonToStringExecutorImpl;
-import com.github.unknownnpc.jsontostring.util.FileIOUtil;
+import com.github.unknownnpc.plugins.exception.JsonToStringExecutorException;
+import com.github.unknownnpc.plugins.executor.JsonToStringExecutor;
+import com.github.unknownnpc.plugins.executor.JsonToStringExecutorImpl;
+import com.github.unknownnpc.plugins.util.FileIOUtil;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;

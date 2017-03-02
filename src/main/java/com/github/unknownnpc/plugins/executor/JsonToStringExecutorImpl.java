@@ -1,8 +1,8 @@
-package com.github.unknownnpc.jsontostring.executor;
+package com.github.unknownnpc.plugins.executor;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.unknownnpc.jsontostring.exception.JsonToStringExecutorException;
+import com.github.unknownnpc.plugins.exception.JsonToStringExecutorException;
 
 import java.io.IOException;
 

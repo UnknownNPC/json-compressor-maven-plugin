@@ -1,4 +1,4 @@
-package com.github.unknownnpc.jsontostring.util;
+package com.github.unknownnpc.plugins.util;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;

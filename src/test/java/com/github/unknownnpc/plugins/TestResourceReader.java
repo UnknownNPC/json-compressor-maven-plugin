@@ -1,4 +1,4 @@
-package com.github.unknownnpc.jsontostring;
+package com.github.unknownnpc.plugins;
 
 import java.net.URL;
 

@@ -1,4 +1,4 @@
-package com.github.unknownnpc.jsontostring;
+package com.github.unknownnpc.plugins;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.maven.plugin.testing.MojoRule;

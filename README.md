@@ -6,11 +6,12 @@ json2string-maven-plugin
 
 ## Overview
 Plugin removes useless whitespaces and newlines in target json files. 
-It helps to reduce file sizes before they get packaged. 
+It helps to reduce file sizes before they get packaged.
 
 ## Content
  
 #### Install  
+Requires Java 1.7+ and Maven 3.x+
 ```
 mvn clean install
 ```
@@ -20,7 +21,7 @@ mvn clean install
 <plugin>
 	<groupId>com.github.unknownnpc.plugins</groupId>
 	<artifactId>json-to-string-maven-plugin</artifactId>
-	<version>1.1</version>
+	<version>1.2</version>
 	<executions>
 		<execution>
 			<goals>
@@ -33,6 +34,9 @@ mvn clean install
 			<include>${project.build.directory}/classes/large-file.json</include>
 			<include>${project.build.directory}/classes/large-files-*.json</include>
 		</includes>
+		<excludes>
+			<exclude>${project.build.directory}/classes/large-files-3.json</exclude>
+		</excludes>
 	</configuration>
 </plugin>
 ```

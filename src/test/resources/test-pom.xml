@@ -22,6 +22,9 @@
                         <include>target/test-classes/json-sample.json</include>
                         <include>target/test-classes/json-sample*.json</include>
                     </includes>
+                    <excludes>
+                        <exclude>target/test-classes/json-sample3.json</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
         </plugins>

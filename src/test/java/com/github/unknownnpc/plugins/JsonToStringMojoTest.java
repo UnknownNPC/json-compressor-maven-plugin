@@ -47,13 +47,13 @@ public class JsonToStringMojoTest extends TestResourceReader {
     }
 
     @Test
-    public void jsonFileContentShouldBeInline() throws IOException {
+    public void jsonFileContentShouldBeInlineExceptExcludeFiles() throws IOException {
         String jsonSample1 = readTestFileContentToString(JSON_SAMPLE_FILENAME_1);
         String jsonSample2 = readTestFileContentToString(JSON_SAMPLE_FILENAME_2);
         String jsonSample3 = readTestFileContentToString(JSON_SAMPLE_FILENAME_3);
         Assert.assertFalse(patternMatchPluginResult(jsonSample1));
         Assert.assertFalse(patternMatchPluginResult(jsonSample2));
-        Assert.assertFalse(patternMatchPluginResult(jsonSample3));
+        Assert.assertTrue(patternMatchPluginResult(jsonSample3));
     }
 
     private boolean patternMatchPluginResult(String jsonAsText) {

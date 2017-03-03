@@ -5,8 +5,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Set;
 
 public class FileIOUtilTest extends TestResourceReader {
 
@@ -18,8 +17,7 @@ public class FileIOUtilTest extends TestResourceReader {
     @Test
     public void fileUtilShouldReadFileContent() throws IOException {
         String readFileSamplePath = getTestFilePath(READ_FILE_SAMPLE_TXT);
-        Map<String, String> readFilePathAndContent = FileIOUtil.readFilesContent(readFileSamplePath, UTF8_ENCODING);
-        String readFileContent = readFilePathAndContent.values().iterator().next();
+        String readFileContent = FileIOUtil.readFileContent(readFileSamplePath, UTF8_ENCODING);
         String expectedContent = "Text sample";
         Assert.assertEquals(expectedContent, readFileContent);
     }
@@ -27,35 +25,35 @@ public class FileIOUtilTest extends TestResourceReader {
     @Test
     public void fileUtilShouldWriteFileContent() throws IOException {
         String writeFileSamplePath = getTestFilePath(WRITE_FILE_SAMPLE_TXT);
+        String writeFileContentBefore = FileIOUtil.readFileContent(writeFileSamplePath, UTF8_ENCODING);
+        Assert.assertTrue(writeFileContentBefore.isEmpty());
         String writeContent = "Text sample";
-        Map<String, String> writeFilePathAndContent = new HashMap<String, String>() {{
-            put(writeFileSamplePath, writeContent);
-        }};
-        FileIOUtil.writeFilesContent(writeFilePathAndContent, UTF8_ENCODING);
-        Map<String, String> writeFilePathAndContentResult = FileIOUtil.readFilesContent(writeFileSamplePath, UTF8_ENCODING);
-        String writeFileContent = writeFilePathAndContentResult.values().iterator().next();
-        Assert.assertEquals(writeContent, writeFileContent);
+        FileIOUtil.writeFileContent(writeFileSamplePath, writeContent, UTF8_ENCODING);
+        String writeFileContentAfter = FileIOUtil.readFileContent(writeFileSamplePath, UTF8_ENCODING);
+        Assert.assertEquals(writeContent, writeFileContentAfter);
     }
 
     @Test
-    public void fileUtilShouldReadFilesUsingWildcard() throws IOException {
+    public void fileUtilShouldFindFilesByWildcard() throws IOException {
         String txtFilesWildcardPath = getTestFilePath(TXT_FILES_WILDCARD);
-        Map<String, String> txtFilesPathAndContent = FileIOUtil.readFilesContent(txtFilesWildcardPath, UTF8_ENCODING);
+        Set<String> filesPath = FileIOUtil.selectAbsoluteFilesPathByWildcardPath(txtFilesWildcardPath);
         final int expectedNumberOfTxtFiles = 2;
-        Assert.assertEquals(expectedNumberOfTxtFiles, txtFilesPathAndContent.size());
+        Assert.assertEquals(expectedNumberOfTxtFiles, filesPath.size());
+    }
+
+    @Test(expected = IOException.class)
+    public void fileUtilThrowsExceptionIfWildcardPathInvalid() throws IOException {
+        FileIOUtil.selectAbsoluteFilesPathByWildcardPath("fake-read-path.txt");
     }
 
     @Test(expected = IOException.class)
     public void fileUtilThrowsExceptionIfReadFileDoesntExist() throws IOException {
-        FileIOUtil.readFilesContent("fake-read-path.txt", UTF8_ENCODING);
+        FileIOUtil.readFileContent("fake-read-path.txt", UTF8_ENCODING);
     }
 
     @Test(expected = IOException.class)
     public void fileUtilThrowsExceptionIfWriteFileDoesntExist() throws IOException {
-        Map<String, String> fakeFilePathAndContent = new HashMap<String, String>() {{
-            put("fake-write-path.txt", "");
-        }};
-        FileIOUtil.writeFilesContent(fakeFilePathAndContent, UTF8_ENCODING);
+        FileIOUtil.writeFileContent("fake-write-path.txt", "", UTF8_ENCODING);
     }
 
 }

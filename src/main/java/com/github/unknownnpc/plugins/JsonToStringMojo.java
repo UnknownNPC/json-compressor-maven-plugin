@@ -41,11 +41,11 @@ public class JsonToStringMojo extends AbstractMojo {
             return;
         }
         try {
-            Set<String> targetFilesPath = findTargetFilesPath();
-            for (String filePathExpression : targetFilesPath) {
-                String targetContent = FileIOUtil.readFileContent(filePathExpression, encoding);
-                String minifyResult = JSON_TO_STRING_EXECUTOR.execute(targetContent);
-                FileIOUtil.writeFileContent(filePathExpression, minifyResult, encoding);
+            Set<String> targetFilesAbsolutePath = findTargetFilesPath();
+            for (String targetFileAbsolutePath : targetFilesAbsolutePath) {
+                String targetContent = FileIOUtil.readFileContent(targetFileAbsolutePath, encoding);
+                String targetContentMinifyResult = JSON_TO_STRING_EXECUTOR.execute(targetContent);
+                FileIOUtil.writeFileContent(targetFileAbsolutePath, targetContentMinifyResult, encoding);
                 SummaryUtil.add(targetContent, encoding, getLog());
             }
         } catch (IOException | JsonToStringExecutorException e) {

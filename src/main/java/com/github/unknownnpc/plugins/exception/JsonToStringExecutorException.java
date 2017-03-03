@@ -5,18 +5,6 @@ package com.github.unknownnpc.plugins.exception;
  */
 public class JsonToStringExecutorException extends Exception {
 
-    public JsonToStringExecutorException() {
-        super();
-    }
-
-    public JsonToStringExecutorException(String message) {
-        super(message);
-    }
-
-    public JsonToStringExecutorException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
     public JsonToStringExecutorException(Throwable cause) {
         super(cause);
     }

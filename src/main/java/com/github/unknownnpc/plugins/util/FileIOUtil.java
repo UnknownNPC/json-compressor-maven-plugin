@@ -10,66 +10,57 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
-/**
- * Created by unknownnpc on 2/27/17.
- */
 public final class FileIOUtil {
 
-    public static Map<String, String> readFilesContent(String filePathExpression, final String encoding) throws IOException {
-        String filesWildcard = FilenameUtils.getName(filePathExpression);
-        String filesFolderPath = FilenameUtils.getFullPath(filePathExpression);
-        final Map<String, String> absolutePathAndContentMap = new HashMap<>();
-        List<File> filesByWildcard = findFilesByWildcardAndFolder(filesWildcard, filesFolderPath);
-        for (File filteredFile : filesByWildcard) {
-            String fileAbsolutePath = filteredFile.getAbsolutePath();
-            String fileContent = readFileContent(fileAbsolutePath, encoding);
-            absolutePathAndContentMap.put(fileAbsolutePath, fileContent);
-        }
-        return absolutePathAndContentMap;
-    }
+    private static final String FILES_FOLDER_EXCEPTION = "Files folder does not exist: [%s]";
+    private static final String FILE_EXCEPTION = "File does not exist: [%s]. Unable to complete [%s] operation";
+    private static final String READ_OPERATION = "read";
+    private static final String WRITE_OPERATION = "write";
 
-    public static void writeFilesContent(Map<String, String> absolutePathAndContentMap, String encoding) throws IOException {
-        for (Map.Entry<String, String> pathContentEntry : absolutePathAndContentMap.entrySet()) {
-            String targetAbsolutePath = pathContentEntry.getKey();
-            String targetContent = pathContentEntry.getValue();
-            writeFileContent(targetAbsolutePath, targetContent, encoding);
+
+    public static Set<String> selectAbsoluteFilesPathByWildcardPath(String wildcardPath) throws IOException {
+        String filesWildcard = FilenameUtils.getName(wildcardPath);
+        String filesFolderPath = FilenameUtils.getFullPath(wildcardPath);
+        if (isDirectoryExist(filesFolderPath)) {
+            FileFilter filter = new WildcardFileFilter(filesWildcard);
+            File filesDirectory = new File(filesFolderPath);
+            File[] filteredFiles = filesDirectory.listFiles(filter);
+            return filesArrayToFilesAbsolutePath(filteredFiles);
+        } else {
+            throw new IOException(String.format(FILES_FOLDER_EXCEPTION, filesFolderPath));
         }
     }
 
-    private static String readFileContent(String absoluteFilePath, final String encoding) throws IOException {
+    public static String readFileContent(String absoluteFilePath, final String encoding) throws IOException {
         if (isFileExist(absoluteFilePath)) {
             File f = new File(absoluteFilePath);
             return FileUtils.readFileToString(f, Charset.forName(encoding));
         } else {
-            throw new IOException("File does not exist: [" + absoluteFilePath + "]. Unable to complete `read` operation.");
+            throw new IOException(String.format(FILE_EXCEPTION, absoluteFilePath, READ_OPERATION));
         }
     }
 
-    private static void writeFileContent(String absoluteFilePath, String content, final String encoding) throws IOException {
+    public static void writeFileContent(String absoluteFilePath, String content, final String encoding) throws IOException {
         if (isFileExist(absoluteFilePath)) {
             File f = new File(absoluteFilePath);
             FileUtils.writeStringToFile(f, content, Charset.forName(encoding));
         } else {
-            throw new IOException("File does not exist: [" + absoluteFilePath + "]. Unable to complete `write` operation.");
+            throw new IOException(String.format(FILE_EXCEPTION, absoluteFilePath, WRITE_OPERATION));
         }
     }
 
-    private static List<File> findFilesByWildcardAndFolder(String filesWildcard, String filesDirectoryPath) throws IOException {
-        File filesDirectory = new File(filesDirectoryPath);
-        if (isDirectoryExist(filesDirectoryPath)) {
-            FileFilter filter = new WildcardFileFilter(filesWildcard);
-            File[] filteredFiles = filesDirectory.listFiles(filter);
-            if (filteredFiles != null) {
-                return Arrays.asList(filteredFiles);
-            } else {
-                return Collections.emptyList();
+    private static Set<String> filesArrayToFilesAbsolutePath(File[] files) {
+        if (files != null) {
+            Set<String> filesAbsolutePath = new HashSet<>();
+            for (File file : Arrays.asList(files)) {
+                filesAbsolutePath.add(file.getAbsolutePath());
             }
+            return filesAbsolutePath;
         } else {
-            throw new IOException("Files folder does not exist: [" + filesDirectoryPath + "]");
+            return Collections.emptySet();
         }
     }
 

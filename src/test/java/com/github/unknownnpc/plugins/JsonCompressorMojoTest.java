@@ -28,9 +28,9 @@ public class JsonCompressorMojoTest extends TestResourceReader {
 
     @Before
     public void pluginShouldExecuteMinifyTaskWithoutExceptions() throws Exception {
-        JsonCompressorStringMojo jsonCompressorStringMojo = (JsonCompressorStringMojo) rule.lookupMojo(PLUGIN_GOAL, TEST_PROJECT_POM_PATH);
-        Assert.assertNotNull(jsonCompressorStringMojo);
-        jsonCompressorStringMojo.execute();
+        JsonCompressorMojo jsonCompressorMojo = (JsonCompressorMojo) rule.lookupMojo(PLUGIN_GOAL, TEST_PROJECT_POM_PATH);
+        Assert.assertNotNull(jsonCompressorMojo);
+        jsonCompressorMojo.execute();
     }
 
     @Test

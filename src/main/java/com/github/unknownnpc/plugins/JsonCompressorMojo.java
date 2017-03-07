@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 @Mojo(name = "minify", defaultPhase = LifecyclePhase.TEST_COMPILE)
-public class JsonCompressorStringMojo extends AbstractMojo {
+public class JsonCompressorMojo extends AbstractMojo {
 
     @Parameter(required = true)
     private List<String> includes = new ArrayList<>();

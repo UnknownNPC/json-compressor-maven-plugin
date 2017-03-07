@@ -2,7 +2,7 @@
 [![codecov](https://codecov.io/gh/UnknownNPC/json-to-string-maven-plugin/branch/master/graph/badge.svg)](https://codecov.io/gh/UnknownNPC/json-to-string-maven-plugin)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.unknownnpc.plugins/json-to-string-maven-plugin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.unknownnpc.plugins/json-to-string-maven-plugin)
 
-json2string-maven-plugin
+json-compressor-maven-plugin
 =====================
 
 ## Overview
@@ -21,8 +21,8 @@ mvn clean install
 ```
 <plugin>
 	<groupId>com.github.unknownnpc.plugins</groupId>
-	<artifactId>json-to-string-maven-plugin</artifactId>
-	<version>1.2</version>
+	<artifactId>json-compressor</artifactId>
+	<version>1.3</version>
 	<executions>
 		<execution>
 			<goals>

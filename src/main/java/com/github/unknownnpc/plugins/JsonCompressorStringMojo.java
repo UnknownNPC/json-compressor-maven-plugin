@@ -1,8 +1,8 @@
 package com.github.unknownnpc.plugins;
 
-import com.github.unknownnpc.plugins.exception.JsonToStringExecutorException;
-import com.github.unknownnpc.plugins.executor.JsonToStringExecutor;
-import com.github.unknownnpc.plugins.executor.JsonToStringExecutorImpl;
+import com.github.unknownnpc.plugins.exception.JsonCompressorExecutorException;
+import com.github.unknownnpc.plugins.executor.JsonCompressorExecutor;
+import com.github.unknownnpc.plugins.executor.JsonCompressorExecutorImpl;
 import com.github.unknownnpc.plugins.util.FileIOUtil;
 import com.github.unknownnpc.plugins.util.SummaryUtil;
 import org.apache.maven.plugin.AbstractMojo;
@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 @Mojo(name = "minify", defaultPhase = LifecyclePhase.TEST_COMPILE)
-public class JsonToStringMojo extends AbstractMojo {
+public class JsonCompressorStringMojo extends AbstractMojo {
 
     @Parameter(required = true)
     private List<String> includes = new ArrayList<>();
@@ -33,7 +33,7 @@ public class JsonToStringMojo extends AbstractMojo {
     @Parameter(property = "skip", defaultValue = "false")
     private boolean skip;
 
-    private static final JsonToStringExecutor JSON_TO_STRING_EXECUTOR = new JsonToStringExecutorImpl();
+    private static final JsonCompressorExecutor JSON_TO_STRING_EXECUTOR = new JsonCompressorExecutorImpl();
 
     public void execute() throws MojoExecutionException, MojoFailureException {
         if (skip) {
@@ -48,7 +48,7 @@ public class JsonToStringMojo extends AbstractMojo {
                 FileIOUtil.writeFileContent(targetFileAbsolutePath, targetContentMinifyResult, encoding);
                 SummaryUtil.add(targetContent, encoding, getLog());
             }
-        } catch (IOException | JsonToStringExecutorException e) {
+        } catch (IOException | JsonCompressorExecutorException e) {
             throw new MojoExecutionException(e.getMessage());
         } finally {
             SummaryUtil.print(getLog());

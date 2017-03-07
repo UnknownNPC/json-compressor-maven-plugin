@@ -13,7 +13,7 @@ import java.nio.charset.Charset;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class JsonToStringMojoTest extends TestResourceReader {
+public class JsonCompressorMojoTest extends TestResourceReader {
 
     @Rule
     public MojoRule rule = new MojoRule();
@@ -28,9 +28,9 @@ public class JsonToStringMojoTest extends TestResourceReader {
 
     @Before
     public void pluginShouldExecuteMinifyTaskWithoutExceptions() throws Exception {
-        JsonToStringMojo jsonToStringMojo = (JsonToStringMojo) rule.lookupMojo(PLUGIN_GOAL, TEST_PROJECT_POM_PATH);
-        Assert.assertNotNull(jsonToStringMojo);
-        jsonToStringMojo.execute();
+        JsonCompressorStringMojo jsonCompressorStringMojo = (JsonCompressorStringMojo) rule.lookupMojo(PLUGIN_GOAL, TEST_PROJECT_POM_PATH);
+        Assert.assertNotNull(jsonCompressorStringMojo);
+        jsonCompressorStringMojo.execute();
     }
 
     @Test

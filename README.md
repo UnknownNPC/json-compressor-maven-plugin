@@ -46,7 +46,7 @@ Plugin is also support `skip` configuration parameter, eg. `<configuration><skip
 
 #### Run
 ```
-mvn com.github.unknownnpc.plugins:json-to-string-maven-plugin:minify
+mvn com.github.unknownnpc.plugins:json-compressor:minify
 ```
 ## Example
 

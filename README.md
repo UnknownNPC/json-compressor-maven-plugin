@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/UnknownNPC/json-to-string-maven-plugin.svg?branch=master)](https://travis-ci.org/UnknownNPC/json-to-string-maven-plugin)
-[![codecov](https://codecov.io/gh/UnknownNPC/json-to-string-maven-plugin/branch/master/graph/badge.svg)](https://codecov.io/gh/UnknownNPC/json-to-string-maven-plugin)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.unknownnpc.plugins/json-to-string-maven-plugin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.unknownnpc.plugins/json-to-string-maven-plugin)
+[![Build Status](https://travis-ci.org/UnknownNPC/json-compressor-maven-plugin.svg?branch=master)](https://travis-ci.org/UnknownNPC/json-compressor-maven-plugin)
+[![codecov](https://codecov.io/gh/UnknownNPC/json-compressor-maven-plugin/branch/master/graph/badge.svg)](https://codecov.io/gh/UnknownNPC/json-compressor-maven-plugin)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.unknownnpc.plugins/json-compressor-maven-plugin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.unknownnpc.plugins/json-compressor-maven-plugin)
 
 json-compressor-maven-plugin
 =====================

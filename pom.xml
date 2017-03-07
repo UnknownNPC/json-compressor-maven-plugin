@@ -17,7 +17,7 @@
 
     <name>Json Compressor Maven Plugin</name>
     <description>Plugin removes useless whitespaces and newlines in target json files</description>
-    <url>https://github.com/UnknownNPC/json-to-string-maven-plugin</url>
+    <url>https://github.com/UnknownNPC/json-compressor-maven-plugin</url>
 
     <licenses>
         <license>
@@ -27,9 +27,9 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/unknownnpc/json-to-string-maven-plugin</url>
-        <connection>scm:git:git://github.com/unknownnpc/json-to-string-maven-plugin.git</connection>
-        <developerConnection>scm:git:https://unknownnpc@github.com/unknownnpc/json-to-string-maven-plugin.git</developerConnection>
+        <url>https://github.com/unknownnpc/json-compressor-maven-plugin</url>
+        <connection>scm:git:git://github.com/unknownnpc/json-compressor-maven-plugin.git</connection>
+        <developerConnection>scm:git:https://unknownnpc@github.com/unknownnpc/json-compressor-maven-plugin.git</developerConnection>
     </scm>
 
     <developers>

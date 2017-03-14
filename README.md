@@ -50,7 +50,7 @@ mvn com.github.unknownnpc.plugins:json-compressor:minify
 ```
 ## Example
 
-####Before
+##### Before
 ```
 {
     "id": 1,
@@ -59,7 +59,7 @@ mvn com.github.unknownnpc.plugins:json-compressor:minify
     "tags": ["home", "green"]
 }
 ```
-####After
+##### After
 ```
 {"id":1,"name":"A green door","price":12.5,"tags":["home","green"]}
 ```

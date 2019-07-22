@@ -3,7 +3,6 @@ language: java
 script: "mvn cobertura:cobertura"
 
 jdk:
-  - oraclejdk7
   - openjdk7
 
 after_success:

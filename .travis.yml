@@ -1,9 +1,0 @@
-language: java
-
-script: "mvn cobertura:cobertura"
-
-jdk:
-  - openjdk7
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)

@@ -9,6 +9,7 @@ import java.io.FileFilter;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,19 +20,34 @@ public final class FileIOUtil {
     private static final String FILE_EXCEPTION = "File does not exist: [%s]. Unable to complete [%s] operation";
     private static final String READ_OPERATION = "read";
     private static final String WRITE_OPERATION = "write";
+    private static final String[] SCAN_FILE_EXTENSIONS = {"json"};
 
+    public static Set<String> selectAbsoluteFilesPathByPath(String path) throws IOException {
+        File pathAsFile = new File(path);
+        if (pathAsFile.isDirectory()) {
+            return selectAbsoluteFilesPathByFolderPath(pathAsFile);
+        }
+        return selectAbsoluteFilesPathByWildcardPattern(path);
+    }
 
-    public static Set<String> selectAbsoluteFilesPathByWildcardPath(String wildcardPath) throws IOException {
-        String filesWildcard = FilenameUtils.getName(wildcardPath);
-        String filesFolderPath = FilenameUtils.getFullPath(wildcardPath);
+    private static Set<String> selectAbsoluteFilesPathByWildcardPattern(String path) throws IOException {
+        String wildcardPattern = FilenameUtils.getName(path);
+        String filesFolderPath = FilenameUtils.getFullPath(path);
         if (isDirectoryExist(filesFolderPath)) {
-            FileFilter filter = WildcardFileFilter.builder().setWildcards(filesWildcard).get();
+            FileFilter filter = WildcardFileFilter.builder().setWildcards(wildcardPattern).get();
             File filesDirectory = new File(filesFolderPath);
             File[] filteredFiles = filesDirectory.listFiles(filter);
             return filesArrayToFilesAbsolutePath(filteredFiles);
         } else {
             throw new IOException(String.format(FILES_FOLDER_EXCEPTION, filesFolderPath));
         }
+    }
+
+    private static Set<String> selectAbsoluteFilesPathByFolderPath(File folder) {
+        Collection<File> jsonFiles = FileUtils.listFiles(folder, SCAN_FILE_EXTENSIONS, true);
+        return jsonFiles.stream()
+                .map(File::getAbsolutePath)
+                .collect(Collectors.toSet());
     }
 
     public static String readFileContent(String absoluteFilePath, final String encoding) throws IOException {

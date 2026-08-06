@@ -56,16 +56,16 @@ public class JsonCompressorMojo extends AbstractMojo {
     }
 
     private Set<String> findTargetFilesPath() throws IOException {
-        Set<String> includesPaths = findAbsoluteFilesPathByWildcards(includes);
-        Set<String> excludesPaths = findAbsoluteFilesPathByWildcards(excludes);
+        Set<String> includesPaths = findAbsoluteFilesPathByPaths(includes);
+        Set<String> excludesPaths = findAbsoluteFilesPathByPaths(excludes);
         return mergeIncludeWithExcludeFilesPath(includesPaths, excludesPaths);
     }
 
-    private Set<String> findAbsoluteFilesPathByWildcards(List<String> wildcards) throws IOException {
+    private Set<String> findAbsoluteFilesPathByPaths(List<String> paths) throws IOException {
         Set<String> filesPath = new HashSet<>();
-        for (String wildcard : wildcards) {
-            Set<String> wildcardFilesPath = FileIOUtil.selectAbsoluteFilesPathByWildcardPath(wildcard);
-            filesPath.addAll(wildcardFilesPath);
+        for (String path : paths) {
+            Set<String> resolvedFilesPath = FileIOUtil.selectAbsoluteFilesPathByPath(path);
+            filesPath.addAll(resolvedFilesPath);
         }
         return filesPath;
     }

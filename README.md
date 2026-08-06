@@ -37,6 +37,7 @@ mvn clean install
 		<includes>
 			<include>${project.build.directory}/classes/large-file.json</include>
 			<include>${project.build.directory}/classes/large-files-*.json</include>
+			<include>${project.build.directory}/classes/some-folder</include>
 		</includes>
 		<excludes>
 			<exclude>${project.build.directory}/classes/large-files-3.json</exclude>
@@ -44,6 +45,10 @@ mvn clean install
 	</configuration>
 </plugin>
 ```
+
+Each `<include>`/`<exclude>` entry accepts either a wildcard file path (matched against files directly
+inside that path's parent folder, non-recursive) or a plain folder path, eg. `.../some-folder` &mdash;
+every `*.json` file inside that folder and all of its subfolders is matched recursively.
 
 Plugin also supports these configuration parameters:
 - `skip` &mdash; skips plugin execution entirely, eg. `<configuration><skip>true</skip></configuration>`.

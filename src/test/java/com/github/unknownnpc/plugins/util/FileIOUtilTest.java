@@ -2,6 +2,7 @@ package com.github.unknownnpc.plugins.util;
 
 import com.github.unknownnpc.plugins.TestResourceReader;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -13,6 +14,12 @@ public class FileIOUtilTest extends TestResourceReader {
     private static final String READ_FILE_SAMPLE_TXT = "read-file-sample.txt";
     private static final String WRITE_FILE_SAMPLE_TXT = "write-file-sample.txt";
     private static final String TXT_FILES_WILDCARD = "*.txt";
+
+    @Before
+    public void resetWriteFileSample() throws IOException {
+        String writeFileSamplePath = getTestFilePath(WRITE_FILE_SAMPLE_TXT);
+        FileIOUtil.writeFileContent(writeFileSamplePath, "", UTF8_ENCODING);
+    }
 
     @Test
     public void fileUtilShouldReadFileContent() throws IOException {

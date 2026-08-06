@@ -11,7 +11,11 @@ It helps to reduce file sizes before they get packaged.
 ## Content
  
 #### Install  
-Requires Java 1.11 and Maven 3.x+
+Requires Java 21 and Maven 3.x+
+
+> **Note:** starting from version `2.0.0`, this plugin targets Java 21. Maven runs plugins in its own JVM,
+> so this is a breaking change for anyone building with a JDK older than 21 — stay on the `1.x` line if you
+> need an older JDK.
 ```
 mvn clean install
 ```
@@ -21,7 +25,7 @@ mvn clean install
 <plugin>
 	<groupId>com.github.unknownnpc.plugins</groupId>
 	<artifactId>json-compressor</artifactId>
-	<version>1.3</version>
+	<version>2.0.0</version>
 	<executions>
 		<execution>
 			<goals>
@@ -41,7 +45,10 @@ mvn clean install
 </plugin>
 ```
 
-Plugin is also support `skip` configuration parameter, eg. `<configuration><skip>true</skip></configuration>`. 
+Plugin also supports these configuration parameters:
+- `skip` &mdash; skips plugin execution entirely, eg. `<configuration><skip>true</skip></configuration>`.
+- `encoding` &mdash; charset used to read and write the target files, eg. `<configuration><encoding>UTF-8</encoding></configuration>`.
+  Defaults to `${project.build.sourceEncoding}`.
 
 #### Run
 ```

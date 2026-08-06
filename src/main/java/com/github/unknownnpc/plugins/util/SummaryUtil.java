@@ -2,6 +2,8 @@ package com.github.unknownnpc.plugins.util;
 
 import org.apache.maven.plugin.logging.Log;
 
+import java.util.Optional;
+
 public final class SummaryUtil {
 
     private static final String FILE_DEBUG_FORMAT = "Plugin run on [%s] with encoding [%s]";
@@ -11,7 +13,7 @@ public final class SummaryUtil {
     private static int filesReplaced;
 
     public static void add(String inputFile, String encoding, Log log) {
-        String encodingUsed = encoding == null ? DEFAULT_ENCODING : encoding;
+        String encodingUsed = Optional.ofNullable(encoding).orElse(DEFAULT_ENCODING);
         log.debug(String.format(FILE_DEBUG_FORMAT, inputFile, encodingUsed));
         filesReplaced++;
     }

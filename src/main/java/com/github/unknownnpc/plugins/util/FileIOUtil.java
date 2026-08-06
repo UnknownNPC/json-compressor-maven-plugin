@@ -9,9 +9,9 @@ import java.io.FileFilter;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public final class FileIOUtil {
 
@@ -25,7 +25,7 @@ public final class FileIOUtil {
         String filesWildcard = FilenameUtils.getName(wildcardPath);
         String filesFolderPath = FilenameUtils.getFullPath(wildcardPath);
         if (isDirectoryExist(filesFolderPath)) {
-            FileFilter filter = new WildcardFileFilter(filesWildcard);
+            FileFilter filter = WildcardFileFilter.builder().setWildcards(filesWildcard).get();
             File filesDirectory = new File(filesFolderPath);
             File[] filteredFiles = filesDirectory.listFiles(filter);
             return filesArrayToFilesAbsolutePath(filteredFiles);
@@ -53,15 +53,10 @@ public final class FileIOUtil {
     }
 
     private static Set<String> filesArrayToFilesAbsolutePath(File[] files) {
-        if (files != null) {
-            Set<String> filesAbsolutePath = new HashSet<>();
-            for (File file : Arrays.asList(files)) {
-                filesAbsolutePath.add(file.getAbsolutePath());
-            }
-            return filesAbsolutePath;
-        } else {
-            return Collections.emptySet();
-        }
+        return Optional.ofNullable(files).stream()
+                .flatMap(Arrays::stream)
+                .map(File::getAbsolutePath)
+                .collect(Collectors.toSet());
     }
 
     private static boolean isFileExist(String absolutePath) {

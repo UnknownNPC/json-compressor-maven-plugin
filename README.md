@@ -1,5 +1,4 @@
-[![codecov](https://codecov.io/gh/UnknownNPC/json-compressor-maven-plugin/branch/master/graph/badge.svg)](https://codecov.io/gh/UnknownNPC/json-compressor-maven-plugin)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.unknownnpc.plugins/json-compressor/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.unknownnpc.plugins/json-compressor)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.unknownnpc.plugins/json-compressor.svg)](https://central.sonatype.com/artifact/com.github.unknownnpc.plugins/json-compressor/overview)
 
 json-compressor-maven-plugin
 =====================

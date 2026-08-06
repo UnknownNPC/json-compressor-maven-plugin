@@ -22,6 +22,9 @@ public class JsonCompressorMojoTest extends TestResourceReader {
     private static final String JSON_SAMPLE_FILENAME_1 = "json-sample.json";
     private static final String JSON_SAMPLE_FILENAME_2 = "json-sample2.json";
     private static final String JSON_SAMPLE_FILENAME_3 = "json-sample3.json";
+    private static final String NESTED_JSON_INCLUDED_TOP_LEVEL = "nested-json/included-top-level.json";
+    private static final String NESTED_JSON_INCLUDED_DEEPLY_NESTED = "nested-json/sub/included-deeply-nested.json";
+    private static final String NESTED_JSON_EXCLUDED_BY_NAME = "nested-json/excluded-by-name.json";
     private static final String TEST_PROJECT_POM_PATH = "target/test-classes/test-pom.xml";
     private static final String VALIDATION_REGEXP = "\\s(?=([^\"\\\\]*(\\\\.|\"([^\"\\\\]*\\\\.)*[^\"\\\\]*\"))*[^\"]*$)";
     private static final Pattern RESULT_REGEXP_PATTERN = Pattern.compile(VALIDATION_REGEXP);
@@ -54,6 +57,24 @@ public class JsonCompressorMojoTest extends TestResourceReader {
         Assert.assertFalse(patternMatchPluginResult(jsonSample1));
         Assert.assertFalse(patternMatchPluginResult(jsonSample2));
         Assert.assertTrue(patternMatchPluginResult(jsonSample3));
+    }
+
+    @Test
+    public void jsonFileInIncludedFolderShouldBeInline() throws IOException {
+        String includedTopLevel = readTestFileContentToString(NESTED_JSON_INCLUDED_TOP_LEVEL);
+        Assert.assertFalse(patternMatchPluginResult(includedTopLevel));
+    }
+
+    @Test
+    public void jsonFileInIncludedFolderSubfolderShouldBeInlineRecursively() throws IOException {
+        String includedDeeplyNested = readTestFileContentToString(NESTED_JSON_INCLUDED_DEEPLY_NESTED);
+        Assert.assertFalse(patternMatchPluginResult(includedDeeplyNested));
+    }
+
+    @Test
+    public void jsonFileInIncludedFolderShouldStayExcludedByExactFileName() throws IOException {
+        String excludedByName = readTestFileContentToString(NESTED_JSON_EXCLUDED_BY_NAME);
+        Assert.assertTrue(patternMatchPluginResult(excludedByName));
     }
 
     private boolean patternMatchPluginResult(String jsonAsText) {

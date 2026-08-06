@@ -2,6 +2,7 @@ package com.github.unknownnpc.plugins.util;
 
 import com.github.unknownnpc.plugins.TestResourceReader;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -13,6 +14,13 @@ public class FileIOUtilTest extends TestResourceReader {
     private static final String READ_FILE_SAMPLE_TXT = "read-file-sample.txt";
     private static final String WRITE_FILE_SAMPLE_TXT = "write-file-sample.txt";
     private static final String TXT_FILES_WILDCARD = "*.txt";
+    private static final String NESTED_JSON_FOLDER = "nested-json";
+
+    @Before
+    public void resetWriteFileSample() throws IOException {
+        String writeFileSamplePath = getTestFilePath(WRITE_FILE_SAMPLE_TXT);
+        FileIOUtil.writeFileContent(writeFileSamplePath, "", UTF8_ENCODING);
+    }
 
     @Test
     public void fileUtilShouldReadFileContent() throws IOException {
@@ -36,14 +44,22 @@ public class FileIOUtilTest extends TestResourceReader {
     @Test
     public void fileUtilShouldFindFilesByWildcard() throws IOException {
         String txtFilesWildcardPath = getTestFilePath(TXT_FILES_WILDCARD);
-        Set<String> filesPath = FileIOUtil.selectAbsoluteFilesPathByWildcardPath(txtFilesWildcardPath);
+        Set<String> filesPath = FileIOUtil.selectAbsoluteFilesPathByPath(txtFilesWildcardPath);
         final int expectedNumberOfTxtFiles = 2;
         Assert.assertEquals(expectedNumberOfTxtFiles, filesPath.size());
     }
 
+    @Test
+    public void fileUtilShouldFindJsonFilesRecursivelyInFolder() throws IOException {
+        String nestedJsonFolderPath = getTestFilePath(NESTED_JSON_FOLDER);
+        Set<String> filesPath = FileIOUtil.selectAbsoluteFilesPathByPath(nestedJsonFolderPath);
+        final int expectedNumberOfJsonFiles = 3;
+        Assert.assertEquals(expectedNumberOfJsonFiles, filesPath.size());
+    }
+
     @Test(expected = IOException.class)
     public void fileUtilThrowsExceptionIfWildcardPathInvalid() throws IOException {
-        FileIOUtil.selectAbsoluteFilesPathByWildcardPath("fake-read-path.txt");
+        FileIOUtil.selectAbsoluteFilesPathByPath("fake-read-path.txt");
     }
 
     @Test(expected = IOException.class)

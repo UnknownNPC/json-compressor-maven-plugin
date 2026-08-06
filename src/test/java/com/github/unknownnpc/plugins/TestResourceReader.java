@@ -1,6 +1,7 @@
 package com.github.unknownnpc.plugins;
 
 import java.net.URL;
+import java.util.Optional;
 
 public class TestResourceReader {
 
@@ -8,10 +9,8 @@ public class TestResourceReader {
 
     protected String getTestFilePath(String fileName) {
         URL testClassesUrl = this.getClass().getClassLoader().getResource(RESOURCES_TARGET_PATH);
-        if (testClassesUrl != null) {
-            return testClassesUrl.getPath() + fileName;
-        } else {
-            return fileName;
-        }
+        return Optional.ofNullable(testClassesUrl)
+                .map(url -> url.getPath() + fileName)
+                .orElse(fileName);
     }
 }

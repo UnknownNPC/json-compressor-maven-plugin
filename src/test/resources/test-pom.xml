@@ -21,9 +21,11 @@
                     <includes>
                         <include>target/test-classes/json-sample.json</include>
                         <include>target/test-classes/json-sample*.json</include>
+                        <include>target/test-classes/nested-json</include>
                     </includes>
                     <excludes>
                         <exclude>target/test-classes/json-sample3.json</exclude>
+                        <exclude>target/test-classes/nested-json/excluded-by-name.json</exclude>
                     </excludes>
                 </configuration>
             </plugin>

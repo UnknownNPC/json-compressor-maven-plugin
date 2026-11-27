@@ -12,7 +12,7 @@ It helps to reduce file sizes before they get packaged.
 #### Install  
 Requires Java 21 and Maven 3.x+
 
-> **Note:** starting from version `2.0.0`, this plugin targets Java 21. Maven runs plugins in its own JVM,
+> **Note:** starting from version `2.0`, this plugin targets Java 21. Maven runs plugins in its own JVM,
 > so this is a breaking change for anyone building with a JDK older than 21 — stay on the `1.x` line if you
 > need an older JDK.
 ```
@@ -24,7 +24,7 @@ mvn clean install
 <plugin>
 	<groupId>com.github.unknownnpc.plugins</groupId>
 	<artifactId>json-compressor</artifactId>
-	<version>2.0.0</version>
+	<version>2.1</version>
 	<executions>
 		<execution>
 			<goals>

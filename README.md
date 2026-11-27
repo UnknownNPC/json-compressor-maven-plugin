@@ -1,4 +1,4 @@
-[![Maven Central](https://img.shields.io/maven-central/v/com.github.unknownnpc.plugins/json-compressor.svg)](https://central.sonatype.com/artifact/com.github.unknownnpc.plugins/json-compressor/overview)
+[![Maven Central](https://img.shields.io/maven-metadata/v.svg?metadataUrl=https%3A%2F%2Frepo1.maven.org%2Fmaven2%2Fcom%2Fgithub%2Funknownnpc%2Fplugins%2Fjson-compressor%2Fmaven-metadata.xml&label=maven-central)](https://central.sonatype.com/artifact/com.github.unknownnpc.plugins/json-compressor/overview)
 
 json-compressor-maven-plugin
 =====================
